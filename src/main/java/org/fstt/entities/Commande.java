@@ -41,12 +41,9 @@ public class Commande implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	@JsonCreator
-	public Commande(@JsonProperty("dateCommande") Date dateCommande, 
-			@JsonProperty("client") Client client, 
-			@JsonProperty("lignesCmd") Collection<LigneCommande> lignesCmd) {
+	public Commande(Date dateCommande, Client client,  Collection<LigneCommande> lignesCmd) {
 		super();
-		this.dateCommande = dateCommande;
+		this.dateCommande = new Date();
 		this.client = client;
 		this.lignesCmd = lignesCmd;
 	}

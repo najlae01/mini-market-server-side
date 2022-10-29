@@ -2,6 +2,7 @@ package org.fstt.metier;
 
 import java.util.List;
 
+import org.fstt.dao.ClientRepository;
 import org.fstt.dao.CommandeRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.Commande;
@@ -14,8 +15,13 @@ public class CommandeMetierImpl implements CommandeMetier{
 	@Autowired
 	private CommandeRepository commandeRepository;
 	
+	@Autowired
+	private ClientRepository clientRepository;
+	
 	@Override
-	public Commande saveCommande(Commande commande) {
+	public Commande saveCommande(Commande commande, Integer id) {
+		Client client = clientRepository.findById(id).get();
+		client.addCommande(commande);
 		return commandeRepository.save(commande);
 	}
 

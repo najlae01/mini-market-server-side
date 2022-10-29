@@ -93,6 +93,10 @@ public class Client implements Serializable{
 	public void setCommandes(Collection<Commande> commandes) {
 		this.commandes = commandes;
 	}
+	
+	public void addCommande(Commande commande) {
+		this.commandes.add(commande);
+	}
 
 	public Client(String nomClient, String prenomClient, String adresse, String telephone,
 			String villeClient, Collection<Commande> commandes) {
