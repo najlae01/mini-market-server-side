@@ -6,7 +6,9 @@ import org.fstt.dao.LigneCommandeRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.LigneCommande;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LigneCommandeMetierImpl implements LigneCommandeMetier{
 
 	@Autowired
@@ -21,11 +23,11 @@ public class LigneCommandeMetierImpl implements LigneCommandeMetier{
 	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Integer id) {
 		LigneCommande existLigneCommande = ligneCommandeRepository.findById(id).get();
 		
-		ligneCommande.setArticle(ligneCommande.getArticle());
+		existLigneCommande.setArticle(ligneCommande.getArticle());
 		
-		ligneCommande.setCommande(ligneCommande.getCommande());
+		existLigneCommande.setCommande(ligneCommande.getCommande());
 		
-		ligneCommande.setQuantiteCommande(ligneCommande.getQuantiteCommande());
+		existLigneCommande.setQuantiteCommande(ligneCommande.getQuantiteCommande());
 		
 		return ligneCommandeRepository.save(existLigneCommande);
 	}

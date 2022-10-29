@@ -5,7 +5,9 @@ import java.util.List;
 import org.fstt.dao.ClientRepository;
 import org.fstt.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientMetierImpl implements ClientMetier{
 
 	@Autowired
@@ -20,17 +22,17 @@ public class ClientMetierImpl implements ClientMetier{
 	public Client updateClient(Client client, Integer id) {
 		Client existClient = clientRepository.findById(id).get();
 		
-		client.setNomClient(client.getNomClient());
+		existClient.setNomClient(client.getNomClient());
 		
-		client.setPrenomClient(client.getPrenomClient());
+		existClient.setPrenomClient(client.getPrenomClient());
 		
-		client.setCommandes(client.getCommandes());
+		existClient.setCommandes(client.getCommandes());
 		
-		client.setAdresse(client.getAdresse());
+		existClient.setAdresse(client.getAdresse());
 		
-		client.setTelephone(client.getTelephone());
+		existClient.setTelephone(client.getTelephone());
 		
-		client.setVilleClient(client.getVilleClient());
+		existClient.setVilleClient(client.getVilleClient());
 		
 		return clientRepository.save(existClient);
 	}

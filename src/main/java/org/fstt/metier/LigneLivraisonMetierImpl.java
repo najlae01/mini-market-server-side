@@ -5,7 +5,9 @@ import java.util.List;
 import org.fstt.dao.LigneLivraisonRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.LigneLivraison;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LigneLivraisonMetierImpl implements LigneLivraisonMetier{
 
 	LigneLivraisonRepository ligneLivraisonRepository;
@@ -19,11 +21,11 @@ public class LigneLivraisonMetierImpl implements LigneLivraisonMetier{
 	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Integer id) {
 		LigneLivraison existLigneLivraison = ligneLivraisonRepository.findById(id).get();
 		
-		ligneLivraison.setArticle(ligneLivraison.getArticle());
+		existLigneLivraison.setArticle(ligneLivraison.getArticle());
 		
-		ligneLivraison.setLivraison(ligneLivraison.getLivraison());
+		existLigneLivraison.setLivraison(ligneLivraison.getLivraison());
 		
-		ligneLivraison.setQuantiteLivraison(ligneLivraison.getQuantiteLivraison());
+		existLigneLivraison.setQuantiteLivraison(ligneLivraison.getQuantiteLivraison());
 		
 		return ligneLivraisonRepository.save(existLigneLivraison);
 	}

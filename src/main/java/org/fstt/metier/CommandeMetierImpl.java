@@ -6,7 +6,9 @@ import org.fstt.dao.CommandeRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.Commande;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommandeMetierImpl implements CommandeMetier{
 
 	@Autowired
@@ -21,11 +23,11 @@ public class CommandeMetierImpl implements CommandeMetier{
 	public Commande updateCommande(Commande commande, Integer id) {
 		Commande existCommande = commandeRepository.findById(id).get();
 		
-		commande.setClient(commande.getClient());
+		existCommande.setClient(commande.getClient());
 		
-		commande.setDateCommande(commande.getDateCommande());
+		existCommande.setDateCommande(commande.getDateCommande());
 		
-		commande.setLignesCmd(commande.getLignesCmd());
+		existCommande.setLignesCmd(commande.getLignesCmd());
 		
 		return commandeRepository.save(existCommande);
 	}

@@ -6,7 +6,9 @@ import org.fstt.dao.ArticleRepository;
 import org.fstt.entities.Article;
 import org.fstt.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ArticleMetierImpl implements ArticleMetier{
 
 	@Autowired
@@ -21,15 +23,15 @@ public class ArticleMetierImpl implements ArticleMetier{
 	public Article updateArticle(Article article, Integer id) {
 		Article existArticle = articleRepository.findById(id).get();
 		
-		article.setNomArticle(article.getNomArticle());
+		existArticle.setNomArticle(article.getNomArticle());
 		
-		article.setPrixUnitaire(article.getPrixUnitaire());
+		existArticle.setPrixUnitaire(article.getPrixUnitaire());
 		
-		article.setQuantite_stock(article.getQuantite_stock());
+		existArticle.setQuantite_stock(article.getQuantite_stock());
 		
-		article.setLigneCmd(article.getLigneCmd());
+		existArticle.setLigneCmd(article.getLigneCmd());
 		
-		article.setLigneLiv(article.getLigneLiv());
+		existArticle.setLigneLiv(article.getLigneLiv());
 		
 		return articleRepository.save(existArticle);
 	}

@@ -6,7 +6,9 @@ import org.fstt.dao.FournisseurRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.Fournisseur;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FournisseurMetierImpl implements FournisseurMetier {
 
 	@Autowired
@@ -21,15 +23,15 @@ public class FournisseurMetierImpl implements FournisseurMetier {
 	public Fournisseur updateFournisseur(Fournisseur fournisseur, Integer id) {
 		Fournisseur existFournisseur = fournisseurRepository.findById(id).get();
 
-		fournisseur.setLivraisons(fournisseur.getLivraisons());
+		existFournisseur.setLivraisons(fournisseur.getLivraisons());
 
-		fournisseur.setNomFournisseur(fournisseur.getNomFournisseur());
+		existFournisseur.setNomFournisseur(fournisseur.getNomFournisseur());
 
-		fournisseur.setSocietes(fournisseur.getSocietes());
+		existFournisseur.setSocietes(fournisseur.getSocietes());
 
-		fournisseur.setTelephoneFournisseur(fournisseur.getTelephoneFournisseur());
+		existFournisseur.setTelephoneFournisseur(fournisseur.getTelephoneFournisseur());
 
-		fournisseur.setVilleFournisseur(fournisseur.getVilleFournisseur());
+		existFournisseur.setVilleFournisseur(fournisseur.getVilleFournisseur());
 
 		return fournisseurRepository.save(existFournisseur);
 	}

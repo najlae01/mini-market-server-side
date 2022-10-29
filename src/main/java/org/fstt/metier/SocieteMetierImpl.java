@@ -6,7 +6,9 @@ import org.fstt.dao.SocieteRepository;
 import org.fstt.entities.Client;
 import org.fstt.entities.Societe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SocieteMetierImpl implements SocieteMetier{
 
 	@Autowired
@@ -21,13 +23,13 @@ public class SocieteMetierImpl implements SocieteMetier{
 	public Societe updateSociete(Societe societe, String uniqueName) {
 		Societe existSociete = societeRepository.findById(uniqueName).get();
 		
-		societe.setFaxSociete(societe.getFaxSociete());
+		existSociete.setFaxSociete(societe.getFaxSociete());
 		
-		societe.setFournisseur(societe.getFournisseur());
+		existSociete.setFournisseur(societe.getFournisseur());
 		
-		societe.setTelephoneSociete(societe.getTelephoneSociete());
+		existSociete.setTelephoneSociete(societe.getTelephoneSociete());
 		
-		societe.setVilleSociete(societe.getVilleSociete());
+		existSociete.setVilleSociete(societe.getVilleSociete());
 		
 		return societeRepository.save(existSociete);
 	}
