@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "article")
 public class Article implements Serializable{
@@ -41,9 +44,11 @@ public class Article implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Article(String nomArticle, Integer prixUnitaire, Integer quantite_stock,
-			LigneCommande ligneCmd, LigneLivraison ligneLiv) {
+	@JsonCreator
+	public Article(@JsonProperty("nomArticle") String nomArticle,@JsonProperty("prixUnitaire") Integer prixUnitaire,
+			@JsonProperty("nomArticle") Integer quantite_stock,
+			@JsonProperty("ligneCmd") LigneCommande ligneCmd, 
+			@JsonProperty("ligneLiv") LigneLivraison ligneLiv) {
 		super();
 		this.nomArticle = nomArticle;
 		this.prixUnitaire = prixUnitaire;

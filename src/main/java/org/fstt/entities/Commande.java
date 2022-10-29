@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "commande")
 public class Commande implements Serializable{
@@ -38,7 +41,10 @@ public class Commande implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(Date dateCommande, Client client, Collection<LigneCommande> lignesCmd) {
+	@JsonCreator
+	public Commande(@JsonProperty("dateCommande") Date dateCommande, 
+			@JsonProperty("client") Client client, 
+			@JsonProperty("lignesCmd") Collection<LigneCommande> lignesCmd) {
 		super();
 		this.dateCommande = dateCommande;
 		this.client = client;
