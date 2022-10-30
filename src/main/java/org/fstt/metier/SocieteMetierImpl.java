@@ -2,8 +2,10 @@ package org.fstt.metier;
 
 import java.util.List;
 
+import org.fstt.dao.FournisseurRepository;
 import org.fstt.dao.SocieteRepository;
 import org.fstt.entities.Client;
+import org.fstt.entities.Fournisseur;
 import org.fstt.entities.Societe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,13 @@ public class SocieteMetierImpl implements SocieteMetier{
 	@Autowired
 	private SocieteRepository societeRepository;
 	
+	@Autowired
+	private FournisseurRepository fournisseurRepository;
+	
 	@Override
-	public Societe saveSociete(Societe societe) {
+	public Societe saveSociete(Societe societe, Integer id) {
+		Fournisseur fournisseur = fournisseurRepository.findById(id).get();
+		fournisseur.addSociete(societe);
 		return societeRepository.save(societe);
 	}
 

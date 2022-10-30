@@ -5,7 +5,7 @@ import java.util.List;
 import org.fstt.entities.LigneCommande;
 
 public interface LigneCommandeMetier {
-	public LigneCommande saveLigneCommande(LigneCommande ligneCommande);
+	public LigneCommande saveLigneCommande(LigneCommande ligneCommande, Integer id);
 	
 	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Integer id);
 	

@@ -16,9 +16,9 @@ public class SocieteRestService {
 	@Autowired
 	private SocieteMetier societeMetier;
 	
-	@RequestMapping(value = "/addSociete", method = RequestMethod.POST)
-	public Societe addSociete(@RequestBody Societe societe) {
-		return societeMetier.saveSociete(societe);
+	@RequestMapping(value = "/addSociete/{id}", method = RequestMethod.POST)
+	public Societe addSociete(@RequestBody Societe societe, @PathVariable Integer id) {
+		return societeMetier.saveSociete(societe, id);
 	}
 	
 	@RequestMapping(value = "/updateSociete/{id}", method = RequestMethod.PUT)

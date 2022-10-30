@@ -16,9 +16,9 @@ public class LigneCommandeRestService {
 	@Autowired
 	private LigneCommandeMetier ligneCommandeMetier;
 	
-	@RequestMapping(value = "/addLigneCommande", method = RequestMethod.POST)
-	public LigneCommande addLigneCommande(@RequestBody LigneCommande ligneCommande) {
-		return ligneCommandeMetier.saveLigneCommande(ligneCommande);
+	@RequestMapping(value = "/addLigneCommande/{id}", method = RequestMethod.POST)
+	public LigneCommande addLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Integer id) {
+		return ligneCommandeMetier.saveLigneCommande(ligneCommande, id);
 	}
 	
 	@RequestMapping(value = "/updateLigneCommande/{id}", method = RequestMethod.PUT)

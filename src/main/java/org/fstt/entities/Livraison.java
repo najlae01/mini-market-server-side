@@ -29,6 +29,10 @@ public class Livraison implements Serializable{
 	@OneToMany(mappedBy = "livraison")
 	private Collection<LigneLivraison> lignesLiv;
 	
+	public void addLigneLivraison(LigneLivraison ligneLivraison) {
+		this.lignesLiv.add(ligneLivraison);
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "frs_id")
 	private Fournisseur fournisseur;

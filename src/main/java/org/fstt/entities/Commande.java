@@ -35,6 +35,10 @@ public class Commande implements Serializable{
 	
 	@OneToMany(mappedBy = "commande")
 	private Collection<LigneCommande> lignesCmd;
+	
+	public void addLigneCommande(LigneCommande ligneCommande) {
+		this.lignesCmd.add(ligneCommande);
+	}
 
 	public Commande() {
 		super();

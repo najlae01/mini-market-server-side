@@ -16,9 +16,9 @@ public class LigneLivraisonRestService {
 	@Autowired
 	private LigneLivraisonMetier ligneLivraisonMetier;
 	
-	@RequestMapping(value = "/addLigneLivraison", method = RequestMethod.POST)
-	public LigneLivraison addLigneLivraison(@RequestBody LigneLivraison ligneLivraison) {
-		return ligneLivraisonMetier.saveLigneLivraison(ligneLivraison);
+	@RequestMapping(value = "/addLigneLivraison/{id}", method = RequestMethod.POST)
+	public LigneLivraison addLigneLivraison(@RequestBody LigneLivraison ligneLivraison, @PathVariable Integer id) {
+		return ligneLivraisonMetier.saveLigneLivraison(ligneLivraison, id);
 	}
 	
 	@RequestMapping(value = "/updateLigneLivraison/{id}", method = RequestMethod.PUT)

@@ -32,8 +32,16 @@ public class Fournisseur implements Serializable{
 	@OneToMany(mappedBy = "fournisseur")
 	private Collection<Livraison> livraisons;
 	
+	public void addLivraison(Livraison livraison) {
+		this.livraisons.add(livraison);
+	}
+	
 	@OneToMany(mappedBy = "fournisseur")
 	private Collection<Societe> societes;
+	
+	public void addSociete(Societe societe) {
+		this.societes.add(societe);
+	}
 
 	public Integer getCodeFournisseur() {
 		return CodeFournisseur;

@@ -16,9 +16,9 @@ public class LivraisonRestService {
 	@Autowired
 	private LivraisonMetier livraisonMetier;
 	
-	@RequestMapping(value = "/addLivraison", method = RequestMethod.POST)
-	public Livraison addLivraison(@RequestBody Livraison livraison) {
-		return livraisonMetier.saveLivraison(livraison);
+	@RequestMapping(value = "/addLivraison/{id}", method = RequestMethod.POST)
+	public Livraison addLivraison(@RequestBody Livraison livraison,@PathVariable Integer id) {
+		return livraisonMetier.saveLivraison(livraison, id);
 	}
 	
 	@RequestMapping(value = "/updateLivraison/{id}", method = RequestMethod.PUT)
