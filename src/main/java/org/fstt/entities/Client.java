@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,12 +28,6 @@ public class Client implements Serializable{
 	@Column(name = "pre_cli")
 	private String prenomClient;
 	
-	@Column(name = "email_cli", nullable = false, unique=true)
-	private String emailClient;
-	
-	@Column(name = "password_cli", nullable = false )
-	private String passwordClient;
-	
 	@Column(name = "adr_cli")
 	private String adresse;
 	
@@ -40,6 +36,10 @@ public class Client implements Serializable{
 	
 	@Column(name = "ville_cli")
 	private String villeClient;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User userId;
 	
 	@OneToMany(mappedBy = "client")
 	private Collection<Commande> commandes;
@@ -66,22 +66,6 @@ public class Client implements Serializable{
 
 	public void setPrenomClient(String prenomClient) {
 		this.prenomClient = prenomClient;
-	}
-
-	public String getEmailClient() {
-		return emailClient;
-	}
-
-	public void setEmailClient(String emailClient) {
-		this.emailClient = emailClient;
-	}
-
-	public String getPasswordClient() {
-		return passwordClient;
-	}
-
-	public void setPasswordClient(String passwordClient) {
-		this.passwordClient = passwordClient;
 	}
 
 	public String getAdresse() {
@@ -118,6 +102,14 @@ public class Client implements Serializable{
 	
 	public void addCommande(Commande commande) {
 		this.commandes.add(commande);
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	public Client(String nomClient, String prenomClient, String adresse, String telephone,

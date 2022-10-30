@@ -26,10 +26,6 @@ public class ClientMetierImpl implements ClientMetier{
 		
 		existClient.setPrenomClient(client.getPrenomClient());
 		
-		existClient.setEmailClient(client.getEmailClient());
-		
-		existClient.setPasswordClient(client.getPasswordClient());
-		
 		existClient.setCommandes(client.getCommandes());
 		
 		existClient.setAdresse(client.getAdresse());

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.fstt.dao.LigneLivraisonRepository;
 import org.fstt.dao.LivraisonRepository;
-import org.fstt.entities.Client;
 import org.fstt.entities.LigneLivraison;
 import org.fstt.entities.Livraison;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class LigneLivraisonMetierImpl implements LigneLivraisonMetier{
 	private LivraisonRepository livraisonRepository;
 	
 	@Override
-	public LigneLivraison saveLigneLivraison(LigneLivraison ligneLivraison, Integer id) {
+	public LigneLivraison saveLigneLivraison(LigneLivraison ligneLivraison, Long id) {
 		Livraison livraison = livraisonRepository.findById(id).get();
 		livraison.addLigneLivraison(ligneLivraison);
 		return ligneLivraisonRepository.save(ligneLivraison);

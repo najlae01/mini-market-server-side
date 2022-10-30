@@ -17,7 +17,7 @@ public class LigneCommandeRestService {
 	private LigneCommandeMetier ligneCommandeMetier;
 	
 	@RequestMapping(value = "/addLigneCommande/{id}", method = RequestMethod.POST)
-	public LigneCommande addLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Integer id) {
+	public LigneCommande addLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Long id) {
 		return ligneCommandeMetier.saveLigneCommande(ligneCommande, id);
 	}
 	

@@ -17,7 +17,7 @@ public class SocieteRestService {
 	private SocieteMetier societeMetier;
 	
 	@RequestMapping(value = "/addSociete/{id}", method = RequestMethod.POST)
-	public Societe addSociete(@RequestBody Societe societe, @PathVariable Integer id) {
+	public Societe addSociete(@RequestBody Societe societe, @PathVariable Long id) {
 		return societeMetier.saveSociete(societe, id);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import org.fstt.entities.Societe;
 
 public interface SocieteMetier {
-	public Societe saveSociete(Societe societe, Integer id);
+	public Societe saveSociete(Societe societe, Long id);
 	
 	public Societe updateSociete(Societe societe, String uniqueName);
 	

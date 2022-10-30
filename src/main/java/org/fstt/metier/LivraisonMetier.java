@@ -5,7 +5,7 @@ import java.util.List;
 import org.fstt.entities.Livraison;
 
 public interface LivraisonMetier {
-	public Livraison saveLivraison(Livraison livraison, Integer id);
+	public Livraison saveLivraison(Livraison livraison, Long id);
 	
 	public Livraison updateLivraison(Livraison livraison, Long id);
 	

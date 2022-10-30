@@ -19,7 +19,7 @@ public class LigneCommandeMetierImpl implements LigneCommandeMetier{
 	private CommandeRepository commandeRepository;
 	
 	@Override
-	public LigneCommande saveLigneCommande(LigneCommande ligneCommande, Integer id) {
+	public LigneCommande saveLigneCommande(LigneCommande ligneCommande, Long id) {
 		Commande commande = commandeRepository.findById(id).get();
 		commande.addLigneCommande(ligneCommande);
 		return ligneCommandeRepository.save(ligneCommande);

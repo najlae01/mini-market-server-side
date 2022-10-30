@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,10 @@ public class Fournisseur implements Serializable{
 	
 	@OneToMany(mappedBy = "fournisseur")
 	private Collection<Livraison> livraisons;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User userId;
 	
 	public void addLivraison(Livraison livraison) {
 		this.livraisons.add(livraison);
@@ -89,6 +95,14 @@ public class Fournisseur implements Serializable{
 
 	public void setSocietes(Collection<Societe> societes) {
 		this.societes = societes;
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	public Fournisseur(String nomFournisseur, String villeFournisseur,

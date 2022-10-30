@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.fstt.dao.ArticleRepository;
 import org.fstt.entities.Article;
-import org.fstt.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.fstt.entities.LigneLivraison;
 
 public interface LigneLivraisonMetier {
-	public LigneLivraison saveLigneLivraison(LigneLivraison ligneLivraison, Integer id);
+	public LigneLivraison saveLigneLivraison(LigneLivraison ligneLivraison, Long id);
 	
 	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Long id);
 	
