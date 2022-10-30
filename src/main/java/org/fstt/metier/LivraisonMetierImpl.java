@@ -27,7 +27,7 @@ public class LivraisonMetierImpl implements LivraisonMetier{
 	}
 
 	@Override
-	public Livraison updateLivraison(Livraison livraison, Integer id) {
+	public Livraison updateLivraison(Livraison livraison, Long id) {
 		Livraison existLivraison = livraisonRepository.findById(id).get();
 		
 		existLivraison.setFournisseur(livraison.getFournisseur());
@@ -40,12 +40,12 @@ public class LivraisonMetierImpl implements LivraisonMetier{
 	}
 
 	@Override
-	public Livraison getLivraison(Integer id) {
+	public Livraison getLivraison(Long id) {
 		return livraisonRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteLivraison(Integer id) {
+	public void deleteLivraison(Long id) {
 		livraisonRepository.deleteById(id);
 	}
 

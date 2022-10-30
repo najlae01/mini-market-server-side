@@ -19,14 +19,14 @@ public class CommandeMetierImpl implements CommandeMetier{
 	private ClientRepository clientRepository;
 	
 	@Override
-	public Commande saveCommande(Commande commande, Integer id) {
+	public Commande saveCommande(Commande commande, Long id) {
 		Client client = clientRepository.findById(id).get();
 		client.addCommande(commande);
 		return commandeRepository.save(commande);
 	}
 
 	@Override
-	public Commande updateCommande(Commande commande, Integer id) {
+	public Commande updateCommande(Commande commande, Long id) {
 		Commande existCommande = commandeRepository.findById(id).get();
 		
 		existCommande.setClient(commande.getClient());
@@ -39,12 +39,12 @@ public class CommandeMetierImpl implements CommandeMetier{
 	}
 
 	@Override
-	public Commande getCommande(Integer id) {
+	public Commande getCommande(Long id) {
 		return commandeRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteCommande(Integer id) {
+	public void deleteCommande(Long id) {
 		commandeRepository.deleteById(id);
 	}
 

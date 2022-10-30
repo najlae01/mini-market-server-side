@@ -27,7 +27,7 @@ public class LigneLivraisonMetierImpl implements LigneLivraisonMetier{
 	}
 
 	@Override
-	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Integer id) {
+	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Long id) {
 		LigneLivraison existLigneLivraison = ligneLivraisonRepository.findById(id).get();
 		
 		existLigneLivraison.setArticle(ligneLivraison.getArticle());
@@ -40,12 +40,12 @@ public class LigneLivraisonMetierImpl implements LigneLivraisonMetier{
 	}
 
 	@Override
-	public LigneLivraison getLigneLivraison(Integer id) {
+	public LigneLivraison getLigneLivraison(Long id) {
 		return ligneLivraisonRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteLigneLivraison(Integer id) {
+	public void deleteLigneLivraison(Long id) {
 		ligneLivraisonRepository.deleteById(id);
 	}
 

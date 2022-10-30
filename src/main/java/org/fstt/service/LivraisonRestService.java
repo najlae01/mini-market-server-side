@@ -22,17 +22,17 @@ public class LivraisonRestService {
 	}
 	
 	@RequestMapping(value = "/updateLivraison/{id}", method = RequestMethod.PUT)
-	public Livraison updateLivraison(@RequestBody Livraison livraison, @PathVariable Integer id) {
+	public Livraison updateLivraison(@RequestBody Livraison livraison, @PathVariable Long id) {
 		return livraisonMetier.updateLivraison(livraison, id);
 	}
 	
 	@RequestMapping(value = "/getLivraison/{id}", method = RequestMethod.GET)
-	public Livraison getLivraison(@PathVariable Integer id) {
+	public Livraison getLivraison(@PathVariable Long id) {
 		return livraisonMetier.getLivraison(id);
 	}
 	
 	@RequestMapping(value = "/deleteLivraison/{id}", method = RequestMethod.DELETE)
-	public void deleteLivraison(@PathVariable Integer id) {
+	public void deleteLivraison(@PathVariable Long id) {
 		livraisonMetier.deleteLivraison(id);
 	}
 	

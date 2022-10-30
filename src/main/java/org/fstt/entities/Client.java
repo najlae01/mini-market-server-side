@@ -18,13 +18,19 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cod_cli")
-	private Integer codeClient;
+	private Long codeClient;
 	
 	@Column(name = "nom_cli")
 	private String nomClient;
 	
 	@Column(name = "pre_cli")
 	private String prenomClient;
+	
+	@Column(name = "email_cli", nullable = false, unique=true)
+	private String emailClient;
+	
+	@Column(name = "password_cli", nullable = false )
+	private String passwordClient;
 	
 	@Column(name = "adr_cli")
 	private String adresse;
@@ -38,11 +44,11 @@ public class Client implements Serializable{
 	@OneToMany(mappedBy = "client")
 	private Collection<Commande> commandes;
 
-	public Integer getCodeClient() {
+	public Long getCodeClient() {
 		return codeClient;
 	}
 
-	public void setCodeClient(Integer codeClient) {
+	public void setCodeClient(Long codeClient) {
 		this.codeClient = codeClient;
 	}
 
@@ -60,6 +66,22 @@ public class Client implements Serializable{
 
 	public void setPrenomClient(String prenomClient) {
 		this.prenomClient = prenomClient;
+	}
+
+	public String getEmailClient() {
+		return emailClient;
+	}
+
+	public void setEmailClient(String emailClient) {
+		this.emailClient = emailClient;
+	}
+
+	public String getPasswordClient() {
+		return passwordClient;
+	}
+
+	public void setPasswordClient(String passwordClient) {
+		this.passwordClient = passwordClient;
 	}
 
 	public String getAdresse() {

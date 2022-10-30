@@ -20,10 +20,12 @@ public class ArticleMetierImpl implements ArticleMetier{
 	}
 	
 	@Override
-	public Article updateArticle(Article article, Integer id) {
+	public Article updateArticle(Article article, Long id) {
 		Article existArticle = articleRepository.findById(id).get();
 		
 		existArticle.setNomArticle(article.getNomArticle());
+		
+		existArticle.setImageArticle(article.getImageArticle());
 		
 		existArticle.setPrixUnitaire(article.getPrixUnitaire());
 		
@@ -37,12 +39,12 @@ public class ArticleMetierImpl implements ArticleMetier{
 	}
 
 	@Override
-	public Article getArticle(Integer id) {
+	public Article getArticle(Long id) {
 		return articleRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteArticle(Integer id) {
+	public void deleteArticle(Long id) {
 		articleRepository.deleteById(id);
 	}
 

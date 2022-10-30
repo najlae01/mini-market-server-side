@@ -26,7 +26,7 @@ public class LigneCommandeMetierImpl implements LigneCommandeMetier{
 	}
 
 	@Override
-	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Integer id) {
+	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Long id) {
 		LigneCommande existLigneCommande = ligneCommandeRepository.findById(id).get();
 		
 		existLigneCommande.setArticle(ligneCommande.getArticle());
@@ -39,12 +39,12 @@ public class LigneCommandeMetierImpl implements LigneCommandeMetier{
 	}
 
 	@Override
-	public LigneCommande getLigneCommande(Integer id) {
+	public LigneCommande getLigneCommande(Long id) {
 		return ligneCommandeRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteLigneCommande(Integer id) {
+	public void deleteLigneCommande(Long id) {
 		ligneCommandeRepository.deleteById(id);
 	}
 

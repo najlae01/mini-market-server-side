@@ -21,7 +21,7 @@ public class LigneLivraison implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "num_ligneLiv")
-	private Integer numLigneLivraison;
+	private Long numLigneLivraison;
 	
 	@Column(name = "qte_liv")
 	private Integer quantiteLivraison;
@@ -46,11 +46,11 @@ public class LigneLivraison implements Serializable{
 		this.livraison = livraison;
 	}
 
-	public Integer getNumLigneLivraison() {
+	public Long getNumLigneLivraison() {
 		return numLigneLivraison;
 	}
 
-	public void setNumLigneLivraison(Integer numLigneLivraison) {
+	public void setNumLigneLivraison(Long numLigneLivraison) {
 		this.numLigneLivraison = numLigneLivraison;
 	}
 

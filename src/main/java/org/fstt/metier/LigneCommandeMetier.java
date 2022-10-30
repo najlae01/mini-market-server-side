@@ -7,11 +7,11 @@ import org.fstt.entities.LigneCommande;
 public interface LigneCommandeMetier {
 	public LigneCommande saveLigneCommande(LigneCommande ligneCommande, Integer id);
 	
-	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Integer id);
+	public LigneCommande updateLigneCommande(LigneCommande ligneCommande, Long id);
 	
-	public LigneCommande getLigneCommande(Integer id);
+	public LigneCommande getLigneCommande(Long id);
 	
-	public void deleteLigneCommande(Integer id);
+	public void deleteLigneCommande(Long id);
 	
 	public List<LigneCommande> listLigneCommande();
 }

@@ -20,7 +20,7 @@ public class FournisseurMetierImpl implements FournisseurMetier {
 	}
 
 	@Override
-	public Fournisseur updateFournisseur(Fournisseur fournisseur, Integer id) {
+	public Fournisseur updateFournisseur(Fournisseur fournisseur, Long id) {
 		Fournisseur existFournisseur = fournisseurRepository.findById(id).get();
 
 		existFournisseur.setLivraisons(fournisseur.getLivraisons());
@@ -37,12 +37,12 @@ public class FournisseurMetierImpl implements FournisseurMetier {
 	}
 
 	@Override
-	public Fournisseur getFournisseur(Integer id) {
+	public Fournisseur getFournisseur(Long id) {
 		return fournisseurRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteFournisseur(Integer id) {
+	public void deleteFournisseur(Long id) {
 		fournisseurRepository.deleteById(id);
 	}
 

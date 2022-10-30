@@ -21,7 +21,7 @@ public class Livraison implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "num_liv")
-	private Integer numeroLivraison;
+	private Long numeroLivraison;
 	
 	@Column(name = "date_liv")
 	private Date dateLivraison;
@@ -37,11 +37,11 @@ public class Livraison implements Serializable{
 	@JoinColumn(name = "frs_id")
 	private Fournisseur fournisseur;
 
-	public Integer getNumeroLivraison() {
+	public Long getNumeroLivraison() {
 		return numeroLivraison;
 	}
 
-	public void setNumeroLivraison(Integer numeroLivraison) {
+	public void setNumeroLivraison(Long numeroLivraison) {
 		this.numeroLivraison = numeroLivraison;
 	}
 

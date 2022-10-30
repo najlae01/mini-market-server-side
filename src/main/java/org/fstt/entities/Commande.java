@@ -24,7 +24,7 @@ public class Commande implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "num_cmd")
-	private Integer numeroCommande;
+	private Long numeroCommande;
 	
 	@Column(name = "date_cmd")
 	private Date dateCommande;
@@ -52,11 +52,11 @@ public class Commande implements Serializable{
 		this.lignesCmd = lignesCmd;
 	}
 
-	public Integer getNumeroCommande() {
+	public Long getNumeroCommande() {
 		return numeroCommande;
 	}
 
-	public void setNumeroCommande(Integer numeroCommande) {
+	public void setNumeroCommande(Long numeroCommande) {
 		this.numeroCommande = numeroCommande;
 	}
 

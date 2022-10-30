@@ -19,12 +19,16 @@ public class ClientMetierImpl implements ClientMetier{
 	}
 
 	@Override
-	public Client updateClient(Client client, Integer id) {
+	public Client updateClient(Client client, Long id) {
 		Client existClient = clientRepository.findById(id).get();
 		
 		existClient.setNomClient(client.getNomClient());
 		
 		existClient.setPrenomClient(client.getPrenomClient());
+		
+		existClient.setEmailClient(client.getEmailClient());
+		
+		existClient.setPasswordClient(client.getPasswordClient());
 		
 		existClient.setCommandes(client.getCommandes());
 		
@@ -38,12 +42,12 @@ public class ClientMetierImpl implements ClientMetier{
 	}
 
 	@Override
-	public Client getClient(Integer id) {
+	public Client getClient(Long id) {
 		return clientRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteClient(Integer id) {
+	public void deleteClient(Long id) {
 		clientRepository.deleteById(id);
 	}
 
@@ -51,5 +55,6 @@ public class ClientMetierImpl implements ClientMetier{
 	public List<Client> listClient() {
 		return clientRepository.findAll();
 	}
+
 
 }

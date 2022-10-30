@@ -7,11 +7,11 @@ import org.fstt.entities.LigneLivraison;
 public interface LigneLivraisonMetier {
 	public LigneLivraison saveLigneLivraison(LigneLivraison ligneLivraison, Integer id);
 	
-	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Integer id);
+	public LigneLivraison updateLigneLivraison(LigneLivraison ligneLivraison, Long id);
 	
-	public LigneLivraison getLigneLivraison(Integer id);
+	public LigneLivraison getLigneLivraison(Long id);
 	
-	public void deleteLigneLivraison(Integer id);
+	public void deleteLigneLivraison(Long id);
 	
 	public List<LigneLivraison> listLigneLivraison();
 }

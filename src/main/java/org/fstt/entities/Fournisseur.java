@@ -18,7 +18,7 @@ public class Fournisseur implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cod_four")
-	private Integer CodeFournisseur;
+	private Long CodeFournisseur;
 	
 	@Column(name = "nom_four")
 	private String nomFournisseur;
@@ -43,11 +43,11 @@ public class Fournisseur implements Serializable{
 		this.societes.add(societe);
 	}
 
-	public Integer getCodeFournisseur() {
+	public Long getCodeFournisseur() {
 		return CodeFournisseur;
 	}
 
-	public void setCodeFournisseur(Integer codeFournisseur) {
+	public void setCodeFournisseur(Long codeFournisseur) {
 		CodeFournisseur = codeFournisseur;
 	}
 

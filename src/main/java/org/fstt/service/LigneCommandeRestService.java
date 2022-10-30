@@ -22,17 +22,17 @@ public class LigneCommandeRestService {
 	}
 	
 	@RequestMapping(value = "/updateLigneCommande/{id}", method = RequestMethod.PUT)
-	public LigneCommande updateLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Integer id) {
+	public LigneCommande updateLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Long id) {
 		return ligneCommandeMetier.updateLigneCommande(ligneCommande, id);
 	}
 	
 	@RequestMapping(value = "/getLigneCommande/{id}", method = RequestMethod.GET)
-	public LigneCommande getLigneLigneCommande(@PathVariable Integer id) {
+	public LigneCommande getLigneLigneCommande(@PathVariable Long id) {
 		return ligneCommandeMetier.getLigneCommande(id);
 	}
 	
 	@RequestMapping(value = "/deleteLigneCommande/{id}", method = RequestMethod.DELETE)
-	public void deleteLigneCommande(@PathVariable Integer id) {
+	public void deleteLigneCommande(@PathVariable Long id) {
 		ligneCommandeMetier.deleteLigneCommande(id);
 	}
 	

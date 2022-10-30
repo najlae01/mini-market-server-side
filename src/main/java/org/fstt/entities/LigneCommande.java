@@ -20,7 +20,7 @@ public class LigneCommande implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "num_ligne")
-	private Integer numeroLigne;
+	private Long numeroLigne;
 	
 	@Column(name = "qte_cmd")
 	private Integer quantiteCommande;
@@ -45,11 +45,11 @@ public class LigneCommande implements Serializable{
 		this.commande = commande;
 	}
 
-	public Integer getNumeroLigne() {
+	public Long getNumeroLigne() {
 		return numeroLigne;
 	}
 
-	public void setNumeroLigne(Integer numeroLigne) {
+	public void setNumeroLigne(Long numeroLigne) {
 		this.numeroLigne = numeroLigne;
 	}
 

@@ -23,17 +23,17 @@ public class ArticleRestService {
 	}
 	
 	@RequestMapping(value = "/updateArticle/{id}", method = RequestMethod.PUT)
-	public Article updateArticle(@RequestBody Article article, @PathVariable Integer id) {
+	public Article updateArticle(@RequestBody Article article, @PathVariable Long id) {
 		return articleMetier.updateArticle(article, id);
 	}
 	
 	@RequestMapping(value = "/getArticle/{id}", method = RequestMethod.GET)
-	public Article getArticle(@PathVariable Integer id) {
+	public Article getArticle(@PathVariable Long id) {
 		return articleMetier.getArticle(id);
 	}
 	
 	@RequestMapping(value = "/deleteArticle/{id}", method = RequestMethod.DELETE)
-	public void deleteArticle(@PathVariable Integer id) {
+	public void deleteArticle(@PathVariable Long id) {
 		articleMetier.deleteArticle(id);
 	}
 	

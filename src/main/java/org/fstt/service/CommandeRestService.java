@@ -18,22 +18,22 @@ public class CommandeRestService {
 	private CommandeMetier commandeMetier;
 	
 	@RequestMapping(value = "/addCommande/{id}", method = RequestMethod.POST)
-	public Commande addCommande(@RequestBody Commande commande, @PathVariable Integer id) {
+	public Commande addCommande(@RequestBody Commande commande, @PathVariable Long id) {
 		return commandeMetier.saveCommande(commande, id);
 	}
 	
 	@RequestMapping(value = "/updateCommande/{id}", method = RequestMethod.PUT)
-	public Commande updateCommande(@RequestBody Commande commande, @PathVariable Integer id) {
+	public Commande updateCommande(@RequestBody Commande commande, @PathVariable Long id) {
 		return commandeMetier.updateCommande(commande, id);
 	}
 	
 	@RequestMapping(value = "/getCommande/{id}", method = RequestMethod.GET)
-	public Commande getCommande(@PathVariable Integer id) {
+	public Commande getCommande(@PathVariable Long id) {
 		return commandeMetier.getCommande(id);
 	}
 	
 	@RequestMapping(value = "/deleteCommande/{id}", method = RequestMethod.DELETE)
-	public void deleteCommande(@PathVariable Integer id) {
+	public void deleteCommande(@PathVariable Long id) {
 		commandeMetier.deleteCommande(id);
 	}
 	

@@ -7,11 +7,11 @@ import org.fstt.entities.Livraison;
 public interface LivraisonMetier {
 	public Livraison saveLivraison(Livraison livraison, Integer id);
 	
-	public Livraison updateLivraison(Livraison livraison, Integer id);
+	public Livraison updateLivraison(Livraison livraison, Long id);
 	
-	public Livraison getLivraison(Integer id);
+	public Livraison getLivraison(Long id);
 	
-	public void deleteLivraison(Integer id);
+	public void deleteLivraison(Long id);
 	
 	public List<Livraison> listLivraison();
 }

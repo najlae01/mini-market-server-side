@@ -23,10 +23,13 @@ public class Article implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cod_art")
-	private Integer codeArticle;
+	private Long codeArticle;
 	
 	@Column(name = "nom_art")
 	private String nomArticle;
+	
+	@Column(name = "img_art")
+	private String imageArticle;
 	
 	@Column(name = "pu")
 	private Integer prixUnitaire;
@@ -57,11 +60,11 @@ public class Article implements Serializable{
 		this.ligneLiv = ligneLiv;
 	}
 
-	public Integer getCodeArticle() {
+	public Long getCodeArticle() {
 		return codeArticle;
 	}
 
-	public void setCodeArticle(Integer codeArticle) {
+	public void setCodeArticle(Long codeArticle) {
 		this.codeArticle = codeArticle;
 	}
 
@@ -73,6 +76,12 @@ public class Article implements Serializable{
 		this.nomArticle = nomArticle;
 	}
 
+	public String getImageArticle() {
+		return imageArticle;
+	}
+	public void setImageArticle(String imageArticle) {
+		this.imageArticle = imageArticle;
+	}
 	public Integer getPrixUnitaire() {
 		return prixUnitaire;
 	}

@@ -23,17 +23,17 @@ public class ClientRestService {
 	}
 	
 	@RequestMapping(value = "/updateClient/{id}", method = RequestMethod.PUT)
-	public Client updateClient(@RequestBody Client client, @PathVariable Integer id) {
+	public Client updateClient(@RequestBody Client client, @PathVariable Long id) {
 		return clientMetier.updateClient(client, id);
 	}
 	
 	@RequestMapping(value = "/getClient/{id}", method = RequestMethod.GET)
-	public Client getClient(@PathVariable Integer id) {
+	public Client getClient(@PathVariable Long id) {
 		return clientMetier.getClient(id);
 	}
 	
 	@RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
-	public void deleteClient(@PathVariable Integer id) {
+	public void deleteClient(@PathVariable Long id) {
 		clientMetier.deleteClient(id);
 	}
 	
