@@ -6,7 +6,7 @@ import org.fstt.entities.Article;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ArticleMetier {
-	public Article saveArticle(Article article, MultipartFile file);
+	public String saveArticle(Article article, MultipartFile file);
 	
 	public Article updateArticle(Article article, Long id);
 	

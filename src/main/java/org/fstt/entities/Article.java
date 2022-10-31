@@ -47,10 +47,9 @@ public class Article implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Article(String nomArticle, String imageArticle, Integer prixUnitaire, Integer quantite_stock) {
+	public Article(String nomArticle,Integer prixUnitaire, Integer quantite_stock) {
 		super();
 		this.nomArticle = nomArticle;
-		this.imageArticle = imageArticle;
 		this.prixUnitaire = prixUnitaire;
 		this.quantite_stock = quantite_stock;
 	}
@@ -121,8 +120,11 @@ public class Article implements Serializable{
 		this.ligneLiv = ligneLiv;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Article [codeArticle=" + codeArticle + ", nomArticle=" + nomArticle + ", imageArticle=" + imageArticle
+				+ ", prixUnitaire=" + prixUnitaire + ", quantite_stock=" + quantite_stock + ", ligneCmd=" + ligneCmd
+				+ ", ligneLiv=" + ligneLiv + "]";
+	}	
 
 }

@@ -5,11 +5,14 @@ import java.util.List;
 import org.fstt.entities.Article;
 import org.fstt.metier.ArticleMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,8 +22,9 @@ public class ArticleRestService {
 	@Autowired
 	private ArticleMetier articleMetier;
 	
-	@RequestMapping(value = "/addArticle", method = RequestMethod.POST, produces = { "application/json" } )
-	public Article addArticle(@RequestBody Article article, @RequestParam("file") MultipartFile file) {
+	@RequestMapping(value = "/addArticle", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+	@ResponseBody
+	public String addArticle(Article article, @RequestParam("file") MultipartFile file) {
 		return articleMetier.saveArticle(article, file);
 	}
 	

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 
 import org.fstt.dao.ArticleRepository;
@@ -24,8 +25,9 @@ public class ArticleMetierImpl implements ArticleMetier{
 	public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
 	
 	@Override
-	public Article saveArticle(Article article, MultipartFile file) {
-		String filename = article.getCodeArticle() + file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
+	public String saveArticle(Article article, MultipartFile file) {
+		Date date = new Date();
+		String filename = date.hashCode() + file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
 		Path filenameAndPath = Paths.get(uploadDirectory, filename);
 		try {
 			Files.write(filenameAndPath, file.getBytes());
@@ -33,7 +35,8 @@ public class ArticleMetierImpl implements ArticleMetier{
 			e.printStackTrace();
 		}
 		article.setImageArticle(filename);
-		return articleRepository.save(article);
+		articleRepository.save(article);
+		return article.toString();
 	}
 	
 	@Override
