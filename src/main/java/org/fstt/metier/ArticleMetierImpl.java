@@ -25,7 +25,9 @@ public class ArticleMetierImpl implements ArticleMetier{
 	public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
 	
 	@Override
-	public String saveArticle(Article article, MultipartFile file) {
+	public String saveArticle(String nomArticle, Integer prixUnitaire,
+			Integer quantite_stock, MultipartFile file) {
+		Article article = new Article(nomArticle, prixUnitaire, quantite_stock);
 		Date date = new Date();
 		String filename = date.hashCode() + file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
 		Path filenameAndPath = Paths.get(uploadDirectory, filename);
