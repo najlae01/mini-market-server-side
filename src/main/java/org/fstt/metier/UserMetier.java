@@ -2,7 +2,6 @@ package org.fstt.metier;
 
 import java.security.Principal;
 
-import org.fstt.entities.UserData;
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
 import org.fstt.responses.RegisterResponse;
