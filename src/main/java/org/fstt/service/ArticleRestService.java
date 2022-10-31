@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,14 +25,10 @@ public class ArticleRestService {
 	private ArticleMetier articleMetier;
 	
 	@CrossOrigin(origins = "http://localhost:8080")
-	@RequestMapping(value = "/addArticle", method = RequestMethod.POST )
+	@RequestMapping(value = "/addArticle", method = RequestMethod.POST)
 	@ResponseBody
-	public String addArticle(@RequestPart(name="nomArticle") String nomArticle,
-			@RequestPart(name = "prixUnitaire" ) Integer prixUnitaire,
-			@RequestPart(name = "quantite_stock") Integer quantite_stock,
-			@RequestPart(name="file") MultipartFile file) {
-		return articleMetier.saveArticle(nomArticle,prixUnitaire, 
-				quantite_stock, file);
+	public String addArticle(@RequestBody Article article) {
+		return articleMetier.saveArticle(article);
 	}
 	
 	@RequestMapping(value = "/updateArticle/{id}", method = RequestMethod.PUT)

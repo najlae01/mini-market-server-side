@@ -14,6 +14,7 @@ import org.fstt.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -22,21 +23,10 @@ public class ArticleMetierImpl implements ArticleMetier{
 	@Autowired
 	private ArticleRepository articleRepository;
 	
-	public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
+	
 	
 	@Override
-	public String saveArticle(String nomArticle, Integer prixUnitaire,
-			Integer quantite_stock, MultipartFile file) {
-		Article article = new Article(nomArticle, prixUnitaire, quantite_stock);
-		Date date = new Date();
-		String filename = date.hashCode() + file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
-		Path filenameAndPath = Paths.get(uploadDirectory, filename);
-		try {
-			Files.write(filenameAndPath, file.getBytes());
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		article.setImageArticle(filename);
+	public String saveArticle(Article article) {
 		articleRepository.save(article);
 		return article.toString();
 	}
