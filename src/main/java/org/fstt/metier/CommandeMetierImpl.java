@@ -21,7 +21,8 @@ public class CommandeMetierImpl implements CommandeMetier{
 	@Override
 	public Commande saveCommande(Commande commande, Long id) {
 		Client client = clientRepository.findById(id).get();
-		client.addCommande(commande);
+		commande.setClient(client);
+		System.out.println(client.toString());
 		return commandeRepository.save(commande);
 	}
 

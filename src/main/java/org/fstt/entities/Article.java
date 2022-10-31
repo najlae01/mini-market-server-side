@@ -46,11 +46,19 @@ public class Article implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@JsonCreator
-	public Article(@JsonProperty("nomArticle") String nomArticle,@JsonProperty("prixUnitaire") Integer prixUnitaire,
-			@JsonProperty("nomArticle") Integer quantite_stock,
-			@JsonProperty("ligneCmd") LigneCommande ligneCmd, 
-			@JsonProperty("ligneLiv") LigneLivraison ligneLiv) {
+	
+	public Article(String nomArticle, String imageArticle, Integer prixUnitaire, Integer quantite_stock) {
+		super();
+		this.nomArticle = nomArticle;
+		this.imageArticle = imageArticle;
+		this.prixUnitaire = prixUnitaire;
+		this.quantite_stock = quantite_stock;
+	}
+
+	public Article(String nomArticle, Integer prixUnitaire,
+			Integer quantite_stock,
+			LigneCommande ligneCmd, 
+			LigneLivraison ligneLiv) {
 		super();
 		this.nomArticle = nomArticle;
 		this.prixUnitaire = prixUnitaire;

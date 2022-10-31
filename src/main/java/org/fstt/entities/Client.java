@@ -1,6 +1,7 @@
 package org.fstt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -12,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "client")
@@ -41,8 +46,10 @@ public class Client implements Serializable{
 	@JoinColumn(name = "user_id")
 	private User userId;
 	
+	@JsonManagedReference
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "client")
-	private Collection<Commande> commandes;
+	private Collection<Commande> commandes = new ArrayList<Commande>();
 
 	public Long getCodeClient() {
 		return codeClient;
@@ -93,7 +100,7 @@ public class Client implements Serializable{
 	}
 
 	public Collection<Commande> getCommandes() {
-		return commandes;
+		return (Collection<Commande>) commandes;
 	}
 
 	public void setCommandes(Collection<Commande> commandes) {
@@ -113,7 +120,7 @@ public class Client implements Serializable{
 	}
 
 	public Client(String nomClient, String prenomClient, String adresse, String telephone,
-			String villeClient, Collection<Commande> commandes) {
+			String villeClient, ArrayList<Commande> commandes) {
 		super();
 		this.nomClient = nomClient;
 		this.prenomClient = prenomClient;
@@ -126,6 +133,17 @@ public class Client implements Serializable{
 	public Client() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		String res = "Client [codeClient=" + codeClient + ", nomClient=" + nomClient + ", prenomClient=" + prenomClient
+				+ ", adresse=" + adresse + ", telephone=" + telephone + ", villeClient=" + villeClient + ", userId="
+				+ userId + ", commandes=\n";
+		for(Commande c : commandes) {
+			res += c.toString()+ "\n"; 
+		}
+		return res;
 	}
 
 }

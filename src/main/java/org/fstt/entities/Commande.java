@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,6 +30,7 @@ public class Commande implements Serializable{
 	@Column(name = "date_cmd")
 	private Date dateCommande;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "cli_id")
 	private Client client;
@@ -45,10 +47,9 @@ public class Commande implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(Date dateCommande, Client client,  Collection<LigneCommande> lignesCmd) {
+	public Commande(Collection<LigneCommande> lignesCmd) {
 		super();
 		this.dateCommande = new Date();
-		this.client = client;
 		this.lignesCmd = lignesCmd;
 	}
 
@@ -74,6 +75,7 @@ public class Commande implements Serializable{
 
 	public void setClient(Client client) {
 		this.client = client;
+		this.client.addCommande(this);
 	}
 
 	public Collection<LigneCommande> getLignesCmd() {
@@ -82,6 +84,12 @@ public class Commande implements Serializable{
 
 	public void setLignesCmd(Collection<LigneCommande> lignesCmd) {
 		this.lignesCmd = lignesCmd;
+	}
+
+	@Override
+	public String toString() {
+		return "Commande [numeroCommande=" + numeroCommande + ", dateCommande=" + dateCommande + ", client=" + client.getCodeClient()
+				+ ", lignesCmd=" + lignesCmd + "]";
 	}
 	
 

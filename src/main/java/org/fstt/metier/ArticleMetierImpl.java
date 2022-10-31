@@ -1,11 +1,19 @@
 package org.fstt.metier;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.fstt.dao.ArticleRepository;
 import org.fstt.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ArticleMetierImpl implements ArticleMetier{
@@ -13,8 +21,18 @@ public class ArticleMetierImpl implements ArticleMetier{
 	@Autowired
 	private ArticleRepository articleRepository;
 	
+	public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
+	
 	@Override
-	public Article saveArticle(Article article) {
+	public Article saveArticle(Article article, MultipartFile file) {
+		String filename = article.getCodeArticle() + file.getOriginalFilename().substring(file.getOriginalFilename().length()-4);
+		Path filenameAndPath = Paths.get(uploadDirectory, filename);
+		try {
+			Files.write(filenameAndPath, file.getBytes());
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		article.setImageArticle(filename);
 		return articleRepository.save(article);
 	}
 	

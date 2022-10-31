@@ -23,9 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private AppUserMetier appUserMetier;
 	
-	@Autowired
-	private JWTTokenHelper jwtTokenHelper;
-	
+
 	@Autowired
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	

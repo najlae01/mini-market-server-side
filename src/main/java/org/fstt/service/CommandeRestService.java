@@ -5,6 +5,7 @@ import java.util.List;
 import org.fstt.entities.Commande;
 import org.fstt.metier.CommandeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class CommandeRestService {
 	@Autowired
 	private CommandeMetier commandeMetier;
 	
-	@RequestMapping(value = "/addCommande/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/addCommande/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Commande addCommande(@RequestBody Commande commande, @PathVariable Long id) {
 		return commandeMetier.saveCommande(commande, id);
 	}
