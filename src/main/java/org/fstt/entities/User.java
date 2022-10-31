@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -35,12 +36,6 @@ public class User implements UserDetails{
 	@Column(name = "password", nullable = false )
 	private String password;
 	
-	@Column(name = "CREATED_ON")
-	private Date createdAt;
-	
-	@Column(name = "UPDATED_ON")
-	private Date updatedAt;
-	
 	@Column(name = "enabled")
 	private boolean enabled = true;
 	
@@ -53,9 +48,18 @@ public class User implements UserDetails{
 	@OneToMany(mappedBy = "client")
 	private Collection<Commande> commandes;
 	
+	public User() {
+		super();
+	}
+
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return authorities;
 	}
 
@@ -103,21 +107,6 @@ public class User implements UserDetails{
 		this.id = id;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 	public Collection<Commande> getCommandes() {
 		return commandes;

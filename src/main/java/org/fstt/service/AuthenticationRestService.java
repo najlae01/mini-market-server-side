@@ -10,6 +10,7 @@ import org.fstt.system.exception.UserAlreadyExistException;
 import org.fstt.entities.UserData;
 import org.fstt.metier.UserMetier;
 import org.fstt.requests.AuthenticationRequest;
+import org.fstt.requests.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -29,26 +30,10 @@ public class AuthenticationRestService  {
 
 	@Autowired
 	private UserMetier userMetier;
-
-	@GetMapping("/register")
-    public void register(final Model model){
-        model.addAttribute("userData", new UserData());
-    }
 	
 	@RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-	public ResponseEntity<?> register(final @Valid  UserData userData, final BindingResult bindingResult, final Model model){
-		if(bindingResult.hasErrors()){
-            model.addAttribute("registrationForm", userData);
-            return (ResponseEntity<?>) ResponseEntity.badRequest();
-        }
-        try {
-        	userMetier.register(userData);
-        }catch (UserAlreadyExistException e){
-            bindingResult.rejectValue("email", "userData.email","An account already exists for this email.");
-            model.addAttribute("registrationForm", userData);
-            return (ResponseEntity<?>) ResponseEntity.badRequest();
-        }
-		return (ResponseEntity<?>) ResponseEntity.ok(userData);
+	public String register(@RequestBody RegistrationRequest request) throws UserAlreadyExistException{
+		return userMetier.register(request);
 	}
 	
 	@GetMapping("/auth/userinfo")
@@ -57,14 +42,8 @@ public class AuthenticationRestService  {
 	}
 	
 	@PostMapping("/auth/login")
-	public void login(@RequestBody AuthenticationRequest authenticationRequest){
-	    try {
-			userMetier.login(authenticationRequest);
-		} catch (InvalidKeySpecException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+	public String login(@RequestBody AuthenticationRequest authenticationRequest){
+	    return userMetier.login(authenticationRequest);
 	}
 	
 }

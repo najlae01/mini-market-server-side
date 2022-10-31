@@ -1,6 +1,6 @@
 package org.fstt.config;
 
-import org.fstt.service.CustomUserService;
+import org.fstt.metier.AppUserMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	private CustomUserService customUserService;
+	private AppUserMetier appUserMetier;
 	
 	@Autowired
 	private JWTTokenHelper jwtTokenHelper;
@@ -30,41 +30,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	
 	
-	@Bean
 	@Override
+	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-		// TODO Auto-generated method stub
-		return super.authenticationManagerBean();
+	    return super.authenticationManagerBean();
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//http.authorizeRequests().anyRequest().permitAll();
-		//http.authorizeRequests().anyRequest().authenticated();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
-		.authenticationEntryPoint(authenticationEntryPoint).and()
-		.authorizeRequests((request) -> request.antMatchers("/auth/login", "/auth/register").permitAll()
-				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()).addFilterBefore(new JWTAuthenticationFilter(customUserService, jwtTokenHelper),
-				UsernamePasswordAuthenticationFilter.class);
 		
-		http.cors();
-		//http.formLogin();
-		//http.httpBasic();
-		http.csrf().disable().cors().and().headers().frameOptions().disable();
+		http.csrf().disable()
+		.authorizeRequests().antMatchers("/**")
+		.permitAll().anyRequest()
+		.authenticated().and().formLogin();
 	}
 
-	@Override
+	/*@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//In-Memory
 		auth.inMemoryAuthentication().withUser("Najlae").password(passwordEncoder().encode("test@123")).authorities("USER", "ADMIN");
 		
 		//Database Auth
-		auth.userDetailsService(customUserService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(appUserMetier).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 	
 }

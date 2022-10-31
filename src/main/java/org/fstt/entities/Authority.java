@@ -23,6 +23,10 @@ public class Authority implements GrantedAuthority{
 	@Column(name = "role_description", nullable = false )
 	private String roleDescription;
 	
+	public Authority() {
+		super();
+	}
+
 	@Override
 	public String getAuthority() {
 		// TODO Auto-generated method stub
