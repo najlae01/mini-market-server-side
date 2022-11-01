@@ -1,6 +1,7 @@
 package org.fstt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ public class Livraison implements Serializable{
 	private Date dateLivraison;
 	
 	@OneToMany(mappedBy = "livraison")
-	private Collection<LigneLivraison> lignesLiv;
+	private Collection<LigneLivraison> lignesLiv = new ArrayList<LigneLivraison>();
 	
 	public void addLigneLivraison(LigneLivraison ligneLivraison) {
 		this.lignesLiv.add(ligneLivraison);

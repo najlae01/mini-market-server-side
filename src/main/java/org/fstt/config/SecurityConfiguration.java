@@ -32,9 +32,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/**")
-		.permitAll().anyRequest()
-		.authenticated().and().formLogin();
+		.authorizeRequests()
+		.antMatchers("/", "/home").hasAnyAuthority("ADMIN", "Client", "Fournisseur")
+		.antMatchers("/auth/**").hasAnyAuthority("ADMIN", "Client", "Fournisseur")
+		.antMatchers("/dashboard").hasAnyAuthority("ADMIN")
+		.antMatchers("/h2-console/**").permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/403");
 		http.cors();
 	}
 

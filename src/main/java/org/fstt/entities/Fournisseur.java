@@ -1,6 +1,7 @@
 package org.fstt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -43,7 +44,7 @@ public class Fournisseur implements Serializable{
 	}
 	
 	@OneToMany(mappedBy = "fournisseur")
-	private Collection<Societe> societes;
+	private Collection<Societe> societes = new ArrayList<Societe>();
 	
 	public void addSociete(Societe societe) {
 		this.societes.add(societe);

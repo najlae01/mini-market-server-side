@@ -2,7 +2,8 @@ package org.fstt.entities;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,10 +44,8 @@ public class User implements UserDetails{
 	@JoinTable(name = "AUTH_USER_AUTHORITY",
 	joinColumns = @JoinColumn(referencedColumnName = "id"), 
 	inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
-	private List<Authority> authorities;
+	private Set<Authority> authorities = new HashSet<>();
 	
-	@OneToMany(mappedBy = "client")
-	private Collection<Commande> commandes;
 	
 	public User() {
 		super();
@@ -108,14 +107,6 @@ public class User implements UserDetails{
 	}
 
 
-	public Collection<Commande> getCommandes() {
-		return commandes;
-	}
-
-	public void setCommandes(Collection<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -124,7 +115,7 @@ public class User implements UserDetails{
 		this.password = password;
 	}
 
-	public void setAuthorities(List<Authority> authorities) {
+	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
 	}
 	

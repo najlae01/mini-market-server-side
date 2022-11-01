@@ -1,6 +1,7 @@
 package org.fstt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -15,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "commande")
@@ -36,7 +35,7 @@ public class Commande implements Serializable{
 	private Client client;
 	
 	@OneToMany(mappedBy = "commande")
-	private Collection<LigneCommande> lignesCmd;
+	private Collection<LigneCommande> lignesCmd = new ArrayList<LigneCommande>();
 	
 	public void addLigneCommande(LigneCommande ligneCommande) {
 		this.lignesCmd.add(ligneCommande);
