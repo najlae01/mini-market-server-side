@@ -4,7 +4,6 @@ import java.security.Principal;
 
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
-import org.fstt.responses.RegisterResponse;
 import org.fstt.system.exception.UserAlreadyExistException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

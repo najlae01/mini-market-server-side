@@ -1,21 +1,13 @@
 package org.fstt.metier;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Date;
+
 import java.util.List;
 
 import org.fstt.dao.ArticleRepository;
 import org.fstt.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+
 
 @Service
 public class ArticleMetierImpl implements ArticleMetier{
@@ -26,9 +18,8 @@ public class ArticleMetierImpl implements ArticleMetier{
 	
 	
 	@Override
-	public String saveArticle(Article article) {
-		articleRepository.save(article);
-		return article.toString();
+	public Article saveArticle(Article article) {
+		return articleRepository.save(article);
 	}
 	
 	@Override

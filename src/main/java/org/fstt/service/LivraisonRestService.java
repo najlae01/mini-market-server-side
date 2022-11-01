@@ -18,27 +18,27 @@ public class LivraisonRestService {
 	@Autowired
 	private LivraisonMetier livraisonMetier;
 	
-	@RequestMapping(value = "/addLivraison/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/livraison/{id}", method = RequestMethod.POST)
 	public Livraison addLivraison(@RequestBody Livraison livraison,@PathVariable Long id) {
 		return livraisonMetier.saveLivraison(livraison, id);
 	}
 	
-	@RequestMapping(value = "/updateLivraison/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/livraison/{id}", method = RequestMethod.PUT)
 	public Livraison updateLivraison(@RequestBody Livraison livraison, @PathVariable Long id) {
 		return livraisonMetier.updateLivraison(livraison, id);
 	}
 	
-	@RequestMapping(value = "/getLivraison/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/livraison/{id}", method = RequestMethod.GET)
 	public Livraison getLivraison(@PathVariable Long id) {
 		return livraisonMetier.getLivraison(id);
 	}
 	
-	@RequestMapping(value = "/deleteLivraison/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/livraison/{id}", method = RequestMethod.DELETE)
 	public void deleteLivraison(@PathVariable Long id) {
 		livraisonMetier.deleteLivraison(id);
 	}
 	
-	@RequestMapping(value = "/livraisons", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/livraisons", method = RequestMethod.GET)
 	public List<Livraison> listLivraison() {
 		return livraisonMetier.listLivraison();
 	}

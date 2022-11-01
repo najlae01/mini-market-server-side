@@ -18,27 +18,27 @@ public class LigneCommandeRestService {
 	@Autowired
 	private LigneCommandeMetier ligneCommandeMetier;
 	
-	@RequestMapping(value = "/addLigneCommande/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/lignecommande/{id}", method = RequestMethod.POST)
 	public LigneCommande addLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Long id) {
 		return ligneCommandeMetier.saveLigneCommande(ligneCommande, id);
 	}
 	
-	@RequestMapping(value = "/updateLigneCommande/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/lignecommande/{id}", method = RequestMethod.PUT)
 	public LigneCommande updateLigneCommande(@RequestBody LigneCommande ligneCommande, @PathVariable Long id) {
 		return ligneCommandeMetier.updateLigneCommande(ligneCommande, id);
 	}
 	
-	@RequestMapping(value = "/getLigneCommande/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/lignecommande/{id}", method = RequestMethod.GET)
 	public LigneCommande getLigneLigneCommande(@PathVariable Long id) {
 		return ligneCommandeMetier.getLigneCommande(id);
 	}
 	
-	@RequestMapping(value = "/deleteLigneCommande/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/lignecommande/{id}", method = RequestMethod.DELETE)
 	public void deleteLigneCommande(@PathVariable Long id) {
 		ligneCommandeMetier.deleteLigneCommande(id);
 	}
 	
-	@RequestMapping(value = "/ligneCommandes", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/lignecommandes", method = RequestMethod.GET)
 	public List<LigneCommande> listLigneCommande() {
 		return ligneCommandeMetier.listLigneCommande();
 	}

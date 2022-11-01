@@ -18,27 +18,27 @@ public class LigneLivraisonRestService {
 	@Autowired
 	private LigneLivraisonMetier ligneLivraisonMetier;
 	
-	@RequestMapping(value = "/addLigneLivraison/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/lignelivraison/{id}", method = RequestMethod.POST)
 	public LigneLivraison addLigneLivraison(@RequestBody LigneLivraison ligneLivraison, @PathVariable Long id) {
 		return ligneLivraisonMetier.saveLigneLivraison(ligneLivraison, id);
 	}
 	
-	@RequestMapping(value = "/updateLigneLivraison/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/lignelivraison/{id}", method = RequestMethod.PUT)
 	public LigneLivraison updateLigneLivraison(@RequestBody LigneLivraison ligneLivraison, @PathVariable Long id) {
 		return ligneLivraisonMetier.updateLigneLivraison(ligneLivraison, id);
 	}
 	
-	@RequestMapping(value = "/getLigneLivraison/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/lignelivraison/{id}", method = RequestMethod.GET)
 	public LigneLivraison getLigneLivraison(@PathVariable Long id) {
 		return ligneLivraisonMetier.getLigneLivraison(id);
 	}
 	
-	@RequestMapping(value = "/deleteLigneLivraison/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/lignelivraison/{id}", method = RequestMethod.DELETE)
 	public void deleteLigneLivraison(@PathVariable Long id) {
 		ligneLivraisonMetier.deleteLigneLivraison(id);
 	}
 	
-	@RequestMapping(value = "/LigneLivraisons", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/lignelivraisons", method = RequestMethod.GET)
 	public List<LigneLivraison> listLigneLivraison() {
 		return ligneLivraisonMetier.listLigneLivraison();
 	}

@@ -119,4 +119,7 @@ public class User implements UserDetails{
 		this.authorities = authorities;
 	}
 	
+	public void addAuthority(Authority authority) {
+		this.authorities.add(authority);
+	}
 }

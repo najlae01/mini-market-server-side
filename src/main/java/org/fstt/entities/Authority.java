@@ -17,14 +17,16 @@ public class Authority implements GrantedAuthority{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "role_code", nullable = false)
-	private Integer roleCode;
-	
 	@Column(name = "role_description", nullable = false )
 	private String roleDescription;
 	
 	public Authority() {
 		super();
+	}
+
+	public Authority(String roleDescription) {
+		super();
+		this.roleDescription = roleDescription;
 	}
 
 	@Override
@@ -39,14 +41,6 @@ public class Authority implements GrantedAuthority{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Integer getRoleCode() {
-		return roleCode;
-	}
-
-	public void setRoleCode(Integer roleCode) {
-		this.roleCode = roleCode;
 	}
 
 	public String getRoleDescription() {

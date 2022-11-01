@@ -3,8 +3,10 @@ package org.fstt.metier;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.fstt.dao.AuthorityRepository;
 import org.fstt.dao.UserDetailsRepository;
 import org.fstt.dao.UserTokenRepository;
+import org.fstt.entities.Authority;
 import org.fstt.entities.User;
 import org.fstt.entities.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class AppUserMetier implements UserDetailsService{
 	@Autowired
 	private UserTokenRepository userTokenRepository;
 	
+	@Autowired
+	private AuthorityRepository authorityRepository;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -42,7 +47,7 @@ public class AppUserMetier implements UserDetailsService{
 				;
 	}
 	
-	public String signUp(User user) {
+	public String signUp(User user, boolean isFournisseur) {
 		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
 		if(userExists) {
 			throw new IllegalStateException("Username already exists");
@@ -52,6 +57,15 @@ public class AppUserMetier implements UserDetailsService{
 		
 		user.setPassword(encodedPassword);
 		
+		Authority authorityFrns = authorityRepository.findById((long) 3).get();
+		
+		Authority authorityClient = authorityRepository.findById((long) 2).get();
+		
+		if(isFournisseur) {
+			user.addAuthority(authorityFrns);
+		}else {
+			user.addAuthority(authorityClient);
+		}
 		userDetailsRepository.save(user);
 		
 		String token = UUID.randomUUID().toString();

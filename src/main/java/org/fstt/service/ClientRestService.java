@@ -19,27 +19,27 @@ public class ClientRestService {
 	@Autowired
 	private ClientMetier clientMetier;
 	
-	@RequestMapping(value = "/addClient", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/client", method = RequestMethod.POST)
 	public Client addClient(@RequestBody Client client) {
 		return clientMetier.saveClient(client);
 	}
 	
-	@RequestMapping(value = "/updateClient/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/client/{id}", method = RequestMethod.PUT)
 	public Client updateClient(@RequestBody Client client, @PathVariable Long id) {
 		return clientMetier.updateClient(client, id);
 	}
 	
-	@RequestMapping(value = "/getClient/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/client/{id}", method = RequestMethod.GET)
 	public Client getClient(@PathVariable Long id) {
 		return clientMetier.getClient(id);
 	}
 	
-	@RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/client/{id}", method = RequestMethod.DELETE)
 	public void deleteClient(@PathVariable Long id) {
 		clientMetier.deleteClient(id);
 	}
 	
-	@RequestMapping(value = "/clients", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/clients", method = RequestMethod.GET)
 	public List<Client> listClient() {
 		return clientMetier.listClient();
 	}

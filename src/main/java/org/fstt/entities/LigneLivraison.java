@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Table(name = "ligne_liv")
@@ -28,6 +30,7 @@ public class LigneLivraison implements Serializable{
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "article_id", nullable = false, unique = true)
+	@JsonBackReference
 	private Article article;
 	
 	@ManyToOne

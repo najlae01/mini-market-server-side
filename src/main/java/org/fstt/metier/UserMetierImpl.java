@@ -42,7 +42,8 @@ public class UserMetierImpl implements UserMetier{
 					new User(
 							request.getUsername(),
 							request.getPassword()
-							)
+							),
+					request.getIsfournisseur()
 					
 				);
 	}

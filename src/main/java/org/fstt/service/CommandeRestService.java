@@ -19,27 +19,27 @@ public class CommandeRestService {
 	@Autowired
 	private CommandeMetier commandeMetier;
 	
-	@RequestMapping(value = "/addCommande/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/add/commande/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Commande addCommande(@RequestBody Commande commande, @PathVariable Long id) {
 		return commandeMetier.saveCommande(commande, id);
 	}
 	
-	@RequestMapping(value = "/updateCommande/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/commande/{id}", method = RequestMethod.PUT)
 	public Commande updateCommande(@RequestBody Commande commande, @PathVariable Long id) {
 		return commandeMetier.updateCommande(commande, id);
 	}
 	
-	@RequestMapping(value = "/getCommande/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/commande/{id}", method = RequestMethod.GET)
 	public Commande getCommande(@PathVariable Long id) {
 		return commandeMetier.getCommande(id);
 	}
 	
-	@RequestMapping(value = "/deleteCommande/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/commande/{id}", method = RequestMethod.DELETE)
 	public void deleteCommande(@PathVariable Long id) {
 		commandeMetier.deleteCommande(id);
 	}
 	
-	@RequestMapping(value = "/commandes", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/commandes", method = RequestMethod.GET)
 	public List<Commande> listCommande() {
 		return commandeMetier.listCommande();
 	}

@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -36,10 +37,12 @@ public class Article implements Serializable{
 	@Column(name = "qte_stock")
 	private Integer quantite_stock;
 	
-	@OneToOne(mappedBy = "article", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "article",cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private LigneCommande ligneCmd; 
 	
-	@OneToOne(mappedBy = "article", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "article", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private LigneLivraison ligneLiv;
 
 	public Article() {
@@ -60,6 +63,18 @@ public class Article implements Serializable{
 			LigneLivraison ligneLiv) {
 		super();
 		this.nomArticle = nomArticle;
+		this.prixUnitaire = prixUnitaire;
+		this.quantite_stock = quantite_stock;
+		this.ligneCmd = ligneCmd;
+		this.ligneLiv = ligneLiv;
+	}
+	
+
+	public Article(String nomArticle, String imageArticle, Integer prixUnitaire, Integer quantite_stock,
+			LigneCommande ligneCmd, LigneLivraison ligneLiv) {
+		super();
+		this.nomArticle = nomArticle;
+		this.imageArticle = imageArticle;
 		this.prixUnitaire = prixUnitaire;
 		this.quantite_stock = quantite_stock;
 		this.ligneCmd = ligneCmd;

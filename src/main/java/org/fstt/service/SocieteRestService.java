@@ -18,27 +18,27 @@ public class SocieteRestService {
 	@Autowired
 	private SocieteMetier societeMetier;
 	
-	@RequestMapping(value = "/addSociete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/societe/{id}", method = RequestMethod.POST)
 	public Societe addSociete(@RequestBody Societe societe, @PathVariable Long id) {
 		return societeMetier.saveSociete(societe, id);
 	}
 	
-	@RequestMapping(value = "/updateSociete/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update/societe/{id}", method = RequestMethod.PUT)
 	public Societe updateSociete(@RequestBody Societe societe, @PathVariable String uniqueName) {
 		return societeMetier.updateSociete(societe, uniqueName);
 	}
 	
-	@RequestMapping(value = "/getSociete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/societe/{id}", method = RequestMethod.GET)
 	public Societe getSociete(@PathVariable String uniqueName) {
 		return societeMetier.getSociete(uniqueName);
 	}
 	
-	@RequestMapping(value = "/deleteSociete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/societe/{id}", method = RequestMethod.DELETE)
 	public void deleteSociete(@PathVariable String uniqueName) {
 		societeMetier.deleteSociete(uniqueName);
 	}
 	
-	@RequestMapping(value = "/societes", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/societes", method = RequestMethod.GET)
 	public List<Societe> listSociete() {
 		return societeMetier.listSociete();
 	}
