@@ -43,7 +43,7 @@ public class UserMetierImpl implements UserMetier{
 							request.getUsername(),
 							request.getPassword()
 							),
-					request.getIsfournisseur()
+					request.getRole()
 					
 				);
 	}

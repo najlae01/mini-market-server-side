@@ -47,7 +47,7 @@ public class AppUserMetier implements UserDetailsService{
 				;
 	}
 	
-	public String signUp(User user, boolean isFournisseur) {
+	public String signUp(User user, String role) {
 		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
 		if(userExists) {
 			throw new IllegalStateException("Username already exists");
@@ -61,8 +61,12 @@ public class AppUserMetier implements UserDetailsService{
 		
 		Authority authorityClient = authorityRepository.findById((long) 2).get();
 		
-		if(isFournisseur) {
+		Authority authoritySociete = authorityRepository.findById((long) 1).get();
+		
+		if(role.equalsIgnoreCase("fournisseur")) {
 			user.addAuthority(authorityFrns);
+		}else if(role.equalsIgnoreCase("societe")) {
+			user.addAuthority(authoritySociete);
 		}else {
 			user.addAuthority(authorityClient);
 		}

@@ -4,7 +4,7 @@ public class RegistrationRequest {
 	
 	private String username;
 	private String password;
-	private boolean isFournisseur;
+	private String role;
 	
 	public String getUsername() {
 		return username;
@@ -14,7 +14,7 @@ public class RegistrationRequest {
 		return password;
 	}
 	
-	public boolean getIsfournisseur() {
-		return isFournisseur;
+	public String getRole() {
+		return role;
 	}
 }
