@@ -37,6 +37,9 @@ public class User implements UserDetails{
 	@Column(name = "password", nullable = false )
 	private String password;
 	
+	@Column(name = "token", nullable = false )
+	private String token;
+	
 	@Column(name = "enabled")
 	private boolean enabled = true;
 	
@@ -66,6 +69,16 @@ public class User implements UserDetails{
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return this.password;
+	}
+	
+	
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	@Override

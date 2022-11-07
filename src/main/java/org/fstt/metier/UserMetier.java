@@ -2,6 +2,7 @@ package org.fstt.metier;
 
 import java.security.Principal;
 
+import org.fstt.entities.User;
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
 import org.fstt.system.exception.UserAlreadyExistException;
@@ -9,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface UserMetier {
-	public String register(RegistrationRequest request) throws UserAlreadyExistException;
+	public User register(RegistrationRequest request) throws UserAlreadyExistException;
 	
 	public boolean checkIfUserExist(String username);
 	
-	public String login(@RequestBody AuthenticationRequest request);
+	public User login(@RequestBody AuthenticationRequest request);
 	
-	public ResponseEntity<?> getUserInfo(Principal user);
+	public ResponseEntity<?> getUserInfo(Long id);
 }

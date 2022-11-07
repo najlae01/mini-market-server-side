@@ -3,6 +3,7 @@ package org.fstt.metier;
 import java.security.Principal;
 
 import org.fstt.dao.UserDetailsRepository;
+import org.fstt.entities.Client;
 import org.fstt.entities.User;
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
@@ -34,7 +35,7 @@ public class UserMetierImpl implements UserMetier{
 	private AppUserMetier appUserMetier;
 	
 	@Override
-	public String register(RegistrationRequest request) throws UserAlreadyExistException{
+	public User register(RegistrationRequest request) throws UserAlreadyExistException{
 		if(!checkIfUserExist(request.getUsername())) {
 			throw new UserAlreadyExistException("Username already exists.");
 		}
@@ -50,7 +51,7 @@ public class UserMetierImpl implements UserMetier{
 
 
 	@Override
-	public String login(AuthenticationRequest request){
+	public User login(AuthenticationRequest request){
 		final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				request.getUsername(), request.getPassword()));
 		
@@ -62,8 +63,9 @@ public class UserMetierImpl implements UserMetier{
 	}
 
 	@Override
-	public ResponseEntity<?> getUserInfo(Principal user) {
-		User userObj=(User) userDetailsService.loadUserByUsername(user.getName());
+	public ResponseEntity<?> getUserInfo(Long id) {
+		User user = userDetailsRepository.findById(id).get();
+		User userObj=(User) userDetailsService.loadUserByUsername(user.getUsername());
 		
 		UserInfo userInfo=new UserInfo();
 		userInfo.setRoles(userObj.getAuthorities().toArray());

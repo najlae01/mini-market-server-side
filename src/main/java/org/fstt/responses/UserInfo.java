@@ -5,6 +5,7 @@ public class UserInfo {
 	private String username;
 	
 	private Object roles;
+	
 
 	public String getUsername() {
 		return username;

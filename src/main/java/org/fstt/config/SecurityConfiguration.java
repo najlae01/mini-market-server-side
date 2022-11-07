@@ -30,13 +30,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		String[] resources = new String[]{
+                "/",
+                "/home",
+                "/pictureCheckCode",
+                "/include/**",
+                "/css/**",
+                "/icons/**",
+                "/images/**",
+                "/js/**",
+                "/resources/**",
+                "/layer/**",
+                "/static/**",
+                "/js/**",
+                "/img/**",
+                "/webjars/**"
+        };
 		http.csrf().disable()
 		.authorizeRequests()
 		//.antMatchers("/", "/home").hasAnyAuthority("ADMIN", "Client", "Fournisseur")
 		//.antMatchers("/auth/**").hasAnyAuthority("ADMIN", "Client", "Fournisseur")
 		//.antMatchers("/dashboard").hasAnyAuthority("ADMIN")
 		.antMatchers("/**").permitAll()
+		.antMatchers(resources).permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().permitAll()

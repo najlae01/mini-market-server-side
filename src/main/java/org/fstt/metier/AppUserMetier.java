@@ -1,14 +1,13 @@
 package org.fstt.metier;
 
 import java.time.LocalDateTime;
+
 import java.util.UUID;
 
 import org.fstt.dao.AuthorityRepository;
 import org.fstt.dao.UserDetailsRepository;
-import org.fstt.dao.UserTokenRepository;
 import org.fstt.entities.Authority;
 import org.fstt.entities.User;
-import org.fstt.entities.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,8 +26,7 @@ public class AppUserMetier implements UserDetailsService{
 	@Autowired
 	private UserDetailsRepository userDetailsRepository;
 	
-	@Autowired
-	private UserTokenRepository userTokenRepository;
+
 	
 	@Autowired
 	private AuthorityRepository authorityRepository;
@@ -47,7 +45,7 @@ public class AppUserMetier implements UserDetailsService{
 				;
 	}
 	
-	public String signUp(User user, String role) {
+	public User signUp(User user, String role) {
 		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
 		if(userExists) {
 			throw new IllegalStateException("Username already exists");
@@ -70,35 +68,27 @@ public class AppUserMetier implements UserDetailsService{
 		}else {
 			user.addAuthority(authorityClient);
 		}
-		userDetailsRepository.save(user);
-		
 		String token = UUID.randomUUID().toString();
 		
-		UserToken userToken = new UserToken(
-				token,
-				LocalDateTime.now(),
-				LocalDateTime.now().plusMinutes(180),
-				user
-				);
-		userTokenRepository.save(userToken);
-		return token;
+		user.setToken(token);
+		
+		userDetailsRepository.save(user);
+		
+		return user;
 	}
 	
-	public String signIn(User user) {
+	public User signIn(User user) {
 		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
 		if(!userExists) {
 			throw new IllegalStateException("Username doesn't exist");
 		}
-String token = UUID.randomUUID().toString();
+		String token = UUID.randomUUID().toString();
 		
-		UserToken userToken = new UserToken(
-				token,
-				LocalDateTime.now(),
-				LocalDateTime.now().plusMinutes(180),
-				user
-				);
-		userTokenRepository.save(userToken);
-		return token;
+		user.setToken(token);
+		
+		userDetailsRepository.save(user);
+		
+		return user;
 	}
 
 }

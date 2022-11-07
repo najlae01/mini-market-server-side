@@ -4,6 +4,7 @@ package org.fstt.service;
 import java.security.Principal;
 
 import org.fstt.system.exception.UserAlreadyExistException;
+import org.fstt.entities.User;
 import org.fstt.metier.UserMetier;
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
@@ -26,17 +27,17 @@ public class AuthenticationRestService  {
 	private UserMetier userMetier;
 	
 	@RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-	public String register(@RequestBody RegistrationRequest request) throws UserAlreadyExistException{
+	public User register(@RequestBody RegistrationRequest request) throws UserAlreadyExistException{
 		return userMetier.register(request);
 	}
 	
 	@GetMapping("/auth/userinfo")
-	public ResponseEntity<?> getUserInfo(Principal user){
-		return userMetier.getUserInfo(user);
+	public ResponseEntity<?> getUserInfo(Long id){
+		return userMetier.getUserInfo(id);
 	}
 	
 	@PostMapping("/auth/login")
-	public String login(@RequestBody AuthenticationRequest authenticationRequest){
+	public User login(@RequestBody AuthenticationRequest authenticationRequest){
 	    return userMetier.login(authenticationRequest);
 	}
 	
