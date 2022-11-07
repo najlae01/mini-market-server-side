@@ -46,10 +46,6 @@ public class AppUserMetier implements UserDetailsService{
 	}
 	
 	public User signUp(User user, String role) {
-		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
-		if(userExists) {
-			throw new IllegalStateException("Username already exists");
-		}
 		
 		String encodedPassword = passwordEncoder().encode(user.getPassword());
 		
@@ -78,10 +74,6 @@ public class AppUserMetier implements UserDetailsService{
 	}
 	
 	public User signIn(User user) {
-		boolean userExists = userDetailsRepository.findByUsername(user.getUsername()).isPresent();
-		if(!userExists) {
-			throw new IllegalStateException("Username doesn't exist");
-		}
 		String token = UUID.randomUUID().toString();
 		
 		user.setToken(token);

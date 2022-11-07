@@ -52,6 +52,10 @@ public class UserMetierImpl implements UserMetier{
 
 	@Override
 	public User login(AuthenticationRequest request){
+		boolean userExists = userDetailsRepository.findByUsername(request.getUsername()).isPresent();
+		if(!userExists) {
+			throw new IllegalStateException("Username doesn't exist");
+		}
 		final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				request.getUsername(), request.getPassword()));
 		
