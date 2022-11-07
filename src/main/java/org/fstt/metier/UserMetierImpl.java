@@ -36,7 +36,7 @@ public class UserMetierImpl implements UserMetier{
 	
 	@Override
 	public User register(RegistrationRequest request) throws UserAlreadyExistException{
-		if(!checkIfUserExist(request.getUsername())) {
+		if(checkIfUserExist(request.getUsername())) {
 			throw new UserAlreadyExistException("Username already exists.");
 		}
 		return appUserMetier.signUp(
