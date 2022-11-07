@@ -1,17 +1,17 @@
 package org.fstt.service;
 
 
-import java.security.Principal;
-
 import org.fstt.system.exception.UserAlreadyExistException;
+
 import org.fstt.entities.User;
 import org.fstt.metier.UserMetier;
 import org.fstt.requests.AuthenticationRequest;
 import org.fstt.requests.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +31,14 @@ public class AuthenticationRestService  {
 		return userMetier.register(request);
 	}
 	
-	@GetMapping("/auth/userinfo")
-	public ResponseEntity<?> getUserInfo(Long id){
-		return userMetier.getUserInfo(id);
+	@GetMapping("/profile/{id}")
+	public User getUserProfile(@PathVariable Long id){
+		return userMetier.getUserProfile(id);
+	}
+	
+	@RequestMapping(value = "/profile/update/{id}", method = RequestMethod.PUT)
+	public User updateUserProfile(@PathVariable Long id, @RequestBody User user){
+		return userMetier.updateUserProfile(id, user);
 	}
 	
 	@PostMapping("/auth/login")

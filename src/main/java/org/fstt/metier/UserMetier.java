@@ -16,5 +16,7 @@ public interface UserMetier {
 	
 	public User login(@RequestBody AuthenticationRequest request);
 	
-	public ResponseEntity<?> getUserInfo(Long id);
+	public User getUserProfile(Long id);
+	
+	public User updateUserProfile(Long id, User user);
 }

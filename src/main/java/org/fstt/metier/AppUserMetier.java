@@ -8,8 +8,13 @@ import org.fstt.dao.AuthorityRepository;
 import org.fstt.dao.UserDetailsRepository;
 import org.fstt.entities.Authority;
 import org.fstt.entities.User;
+import org.fstt.requests.AuthenticationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +31,8 @@ public class AppUserMetier implements UserDetailsService{
 	@Autowired
 	private UserDetailsRepository userDetailsRepository;
 	
-
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private AuthorityRepository authorityRepository;
@@ -43,6 +49,20 @@ public class AppUserMetier implements UserDetailsService{
 				.orElseThrow(()->
 						new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)))
 				;
+	}
+	
+	public User updateProfile(User existUser, User user) {
+		if(user.getUsername() != null) {
+			existUser.setUsername(user.getUsername());
+		}
+		
+		if(user.getPassword() != null) {
+			String encodedPassword = passwordEncoder().encode(user.getPassword());
+			existUser.setPassword(encodedPassword);	
+		}
+		
+		
+		return userDetailsRepository.save(existUser);
 	}
 	
 	public User signUp(User user, String role) {
@@ -73,7 +93,18 @@ public class AppUserMetier implements UserDetailsService{
 		return user;
 	}
 	
-	public User signIn(User user) {
+	public User signIn( AuthenticationRequest request) {
+		User userExisting = userDetailsRepository.findByUsername(request.getUsername()).get();
+		boolean isPasswordMatch = passwordEncoder().matches(request.getPassword(), userExisting.getPassword());
+		if(!isPasswordMatch) {
+			throw new IllegalStateException("Invalid Password");
+		}
+		final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+				request.getUsername(), request.getPassword()));
+		
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		User user=(User)authentication.getPrincipal();	
 		String token = UUID.randomUUID().toString();
 		
 		user.setToken(token);

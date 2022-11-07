@@ -14,8 +14,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-	@Autowired
-	private AppUserMetier appUserMetier;
 	
 
 	@Autowired
