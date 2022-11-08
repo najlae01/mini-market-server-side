@@ -1,5 +1,6 @@
 package org.fstt.metier;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 
 import java.util.UUID;
@@ -9,6 +10,7 @@ import org.fstt.dao.UserDetailsRepository;
 import org.fstt.entities.Authority;
 import org.fstt.entities.User;
 import org.fstt.requests.AuthenticationRequest;
+import org.fstt.requests.ProfileRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,13 +53,23 @@ public class AppUserMetier implements UserDetailsService{
 				;
 	}
 	
-	public User updateProfile(User existUser, User user) {
-		if(user.getUsername() != null) {
-			existUser.setUsername(user.getUsername());
+	public User getProfile(Long id) {
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getPrincipal().toString();
+		System.out.println(username);
+		User user = userDetailsRepository.findByUsername(username).get();*/
+		User user = userDetailsRepository.findById(id).get();
+		return user;
+		
+	}
+	
+	public User updateProfile(User existUser, ProfileRequest request) {
+		if(request.getUsername() != null) {
+			existUser.setUsername(request.getUsername());
 		}
 		
-		if(user.getPassword() != null) {
-			String encodedPassword = passwordEncoder().encode(user.getPassword());
+		if(request.getPassword() != null) {
+			String encodedPassword = passwordEncoder().encode(request.getPassword());
 			existUser.setPassword(encodedPassword);	
 		}
 		

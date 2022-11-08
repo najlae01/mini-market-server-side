@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.fstt.entities.User;
 import org.fstt.requests.AuthenticationRequest;
+import org.fstt.requests.ProfileRequest;
 import org.fstt.requests.RegistrationRequest;
 import org.fstt.system.exception.UserAlreadyExistException;
 import org.springframework.http.ResponseEntity;
@@ -18,5 +19,5 @@ public interface UserMetier {
 	
 	public User getUserProfile(Long id);
 	
-	public User updateUserProfile(Long id, User user);
+	public User updateUserProfile(ProfileRequest request);
 }

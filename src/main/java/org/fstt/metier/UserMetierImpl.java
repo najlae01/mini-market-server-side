@@ -7,6 +7,7 @@ import org.fstt.entities.Article;
 import org.fstt.entities.Client;
 import org.fstt.entities.User;
 import org.fstt.requests.AuthenticationRequest;
+import org.fstt.requests.ProfileRequest;
 import org.fstt.requests.RegistrationRequest;
 import org.fstt.responses.UserInfo;
 import org.fstt.system.exception.UserAlreadyExistException;
@@ -36,7 +37,7 @@ public class UserMetierImpl implements UserMetier{
 	
 	@Override
 	public User register(RegistrationRequest request) throws UserAlreadyExistException{
-		if(checkIfUserExist(request.getUsername())) {
+		if(!checkIfUserExist(request.getUsername())) {
 			throw new UserAlreadyExistException("Username already exists.");
 		}
 		return appUserMetier.signUp(
@@ -63,9 +64,8 @@ public class UserMetierImpl implements UserMetier{
 
 	@Override
 	public User getUserProfile(Long id) {
-		User user = userDetailsRepository.findById(id).get();
 		
-		return user;	
+		return appUserMetier.getProfile(id);
 		
 	}
 	
@@ -76,10 +76,10 @@ public class UserMetierImpl implements UserMetier{
 
 
 	@Override
-	public User updateUserProfile(Long id, User user) {
-		User existUser = userDetailsRepository.findById(id).get();
+	public User updateUserProfile(ProfileRequest request) {
+		User existUser = userDetailsRepository.findById(request.getId()).get();
 		
-		return appUserMetier.updateProfile(existUser, user);
+		return appUserMetier.updateProfile(existUser, request);
 	}
 
 
