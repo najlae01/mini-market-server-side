@@ -83,18 +83,17 @@ public class AppUserMetier implements UserDetailsService{
 		
 		user.setPassword(encodedPassword);
 		
-		Authority authorityFrns = authorityRepository.findById((long) 3).get();
+		Authority authorityFrns = authorityRepository.findById((long) 2).get();
 		
-		Authority authorityClient = authorityRepository.findById((long) 2).get();
+		Authority authorityClient = authorityRepository.findById((long) 1).get();
 		
-		Authority authoritySociete = authorityRepository.findById((long) 1).get();
 		
-		if(role.equalsIgnoreCase("fournisseur")) {
+		if(role.equals("isFournisseur")) {
 			user.addAuthority(authorityFrns);
-		}else if(role.equalsIgnoreCase("societe")) {
-			user.addAuthority(authoritySociete);
+			user.setFournisseur(true);
 		}else {
 			user.addAuthority(authorityClient);
+			user.setFournisseur(false);
 		}
 		String token = UUID.randomUUID().toString();
 		

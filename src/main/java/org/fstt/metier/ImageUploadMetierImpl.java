@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ImageUploadMetierImpl implements ImageUploadMetier{
 	
-	public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
-	
+	//public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/resources/static/images/";
+	private static String uploadDirectory = "/static/images/";
 	@Override
 	public String uploadImage(MultipartFile file) throws Exception{
 		

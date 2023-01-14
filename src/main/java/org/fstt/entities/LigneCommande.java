@@ -29,11 +29,12 @@ public class LigneCommande implements Serializable{
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "article_id", nullable = false, unique = true)
-	@JsonBackReference
+	//@JsonBackReference(value = "article")
 	private Article article;
 	
 	@ManyToOne
 	@JoinColumn(name = "cmd_id")
+	@JsonBackReference(value = "commande")
 	private Commande commande;
 
 	public LigneCommande() {

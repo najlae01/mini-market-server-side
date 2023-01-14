@@ -3,6 +3,7 @@ package org.fstt.service;
 import java.util.List;
 
 import org.fstt.entities.Commande;
+import org.fstt.entities.LigneCommande;
 import org.fstt.metier.CommandeMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,9 +20,9 @@ public class CommandeRestService {
 	@Autowired
 	private CommandeMetier commandeMetier;
 	
-	@RequestMapping(value = "/add/commande/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Commande addCommande(@RequestBody Commande commande, @PathVariable Long id) {
-		return commandeMetier.saveCommande(commande, id);
+	@RequestMapping(value = "/add/commande", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Commande addCommande(@RequestBody Commande commande) {
+		return commandeMetier.saveCommande(commande);
 	}
 	
 	@RequestMapping(value = "/update/commande/{id}", method = RequestMethod.PUT)
@@ -43,4 +44,9 @@ public class CommandeRestService {
 	public List<Commande> listCommande() {
 		return commandeMetier.listCommande();
 	}
+	@RequestMapping(value = "/get/commandes/{id}", method = RequestMethod.GET)
+	public List<Commande> listCommandeByClient(@PathVariable Long id) {
+		return commandeMetier.listCommandeByClient(id);
+	}
+	
 }

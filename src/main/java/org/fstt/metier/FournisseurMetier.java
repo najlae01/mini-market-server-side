@@ -11,6 +11,8 @@ public interface FournisseurMetier {
 	
 	public Fournisseur getFournisseur(Long id);
 	
+	public Fournisseur getFournisseurByUser(Long id);
+	
 	public void deleteFournisseur(Long id);
 	
 	public List<Fournisseur> listFournisseur();

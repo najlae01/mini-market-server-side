@@ -34,6 +34,11 @@ public class ClientRestService {
 		return clientMetier.getClient(id);
 	}
 	
+	@RequestMapping(value = "/get/client/user/{id}", method = RequestMethod.GET)
+	public Client getClientByUser(@PathVariable Long id) {
+		return clientMetier.getClientByUser(id);
+	}
+	
 	@RequestMapping(value = "/delete/client/{id}", method = RequestMethod.DELETE)
 	public void deleteClient(@PathVariable Long id) {
 		clientMetier.deleteClient(id);

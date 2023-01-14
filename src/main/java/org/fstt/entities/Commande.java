@@ -46,9 +46,9 @@ public class Commande implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(Collection<LigneCommande> lignesCmd) {
+	public Commande(Collection<LigneCommande> lignesCmd, Client client) {
 		super();
-		this.dateCommande = new Date();
+		this.client = client;
 		this.lignesCmd = lignesCmd;
 	}
 

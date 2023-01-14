@@ -33,6 +33,11 @@ public class FournisseurRestService {
 		return fournisseurMetier.getFournisseur(id);
 	}
 	
+	@RequestMapping(value = "/get/fournisseur/user/{id}", method = RequestMethod.GET)
+	public Fournisseur getFournisseurByUser(@PathVariable Long id) {
+		return fournisseurMetier.getFournisseurByUser(id);
+	}
+	
 	@RequestMapping(value = "/delete/fournisseur/{id}", method = RequestMethod.DELETE)
 	public void deleteFournisseur(@PathVariable Long id) {
 		fournisseurMetier.deleteFournisseur(id);

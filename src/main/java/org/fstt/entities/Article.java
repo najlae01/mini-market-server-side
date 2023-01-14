@@ -38,7 +38,6 @@ public class Article implements Serializable{
 	private Integer quantite_stock;
 	
 	@OneToOne(mappedBy = "article",cascade = CascadeType.ALL)
-	@JsonManagedReference
 	private LigneCommande ligneCmd; 
 	
 	@OneToOne(mappedBy = "article", cascade = CascadeType.ALL)

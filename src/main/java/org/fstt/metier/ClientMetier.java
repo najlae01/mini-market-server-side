@@ -11,6 +11,8 @@ public interface ClientMetier {
 	
 	public Client getClient(Long id);
 	
+	public Client getClientByUser(Long id);
+	
 	public void deleteClient(Long id);
 	
 	public List<Client> listClient();

@@ -43,6 +43,9 @@ public class User implements UserDetails{
 	@Column(name = "enabled")
 	private boolean enabled = true;
 	
+	@Column(name = "isFournisseur")
+	private boolean isFournisseur;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "AUTH_USER_AUTHORITY",
 	joinColumns = @JoinColumn(referencedColumnName = "id"), 
@@ -85,6 +88,14 @@ public class User implements UserDetails{
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return this.username;
+	}
+
+	public boolean isFournisseur() {
+		return isFournisseur;
+	}
+
+	public void setFournisseur(boolean isFournisseur) {
+		this.isFournisseur = isFournisseur;
 	}
 
 	@Override
